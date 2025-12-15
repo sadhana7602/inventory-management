@@ -6,6 +6,7 @@ import com.inventory.inventorymanagement.entity.Product;
 import com.inventory.inventorymanagement.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ProductController {
         this.service = service;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public Product create(@Valid @RequestBody ProductRequest request) {
         return service.create(request);
