@@ -28,6 +28,7 @@ public class ProductController {
         return service.create(request);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','STAFF')")
     @GetMapping
     public Page<Product> getAll(
             @RequestParam(defaultValue = "0") int page,
